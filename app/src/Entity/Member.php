@@ -10,6 +10,7 @@ class Member extends BaseEntity
     private string $pseudo;
     private string $email;
     private string $password;
+    private string $roles;
     private \DateTime $date_inscription;
 
     /**
@@ -124,5 +125,44 @@ class Member extends BaseEntity
         $this->date_inscription = $date_inscription;
     }
 
+    /**
+     * @return string
+     */
+    public function getRoles(): string
+    {
+        return $this->roles;
+    }
 
+    /**
+     * @param string $roles
+     */
+    public function setRoles(string $roles): void
+    {
+        $this->roles = serialize($roles);
+    }
+
+    public function checkRoles(): array
+    {
+        $roles = unserialize($this->roles);
+        $roles[] .= 'ROLE_MEMBER';
+        return $roles;
+    }
+
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->checkRoles());
+    }
+
+    public function setAdmin($admin): bool
+    {
+        if($admin) {
+            $roles = unserialize($this->roles);
+            $roles[] .= 'ROLE_ADMIN';
+            $this->setRoles($roles);
+            return true;
+        }
+
+        $this->setRoles([]);
+        return false;
+    }
 }

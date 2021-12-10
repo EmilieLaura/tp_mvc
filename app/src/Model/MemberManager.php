@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Entities\Member;
+use App\Entity\Member;
 
 class MemberManager extends BaseManager
 {
@@ -32,8 +32,9 @@ class MemberManager extends BaseManager
             $createMember->bindParam(':password', $password, \PDO::PARAM_STR);
 
             $createMember->execute();
+
+            return $this->getEmail($member->getEmail());
         }
-        // return ;
     }
 
     // Read :

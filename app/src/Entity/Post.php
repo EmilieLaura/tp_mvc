@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class Post extends BaseEntity
 {
-    private int $id_post;
+    private gitint $id_post;
     private string $title_post;
     private string $content_post;
     private $date_post;

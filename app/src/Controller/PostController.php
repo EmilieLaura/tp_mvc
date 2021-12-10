@@ -21,7 +21,7 @@ class PostController extends BaseController
             'Home');
     }
 
-    public function executeShow()
+    public function executeShowOne()
     {
         $manager = new PostManager(PDOFactory::getMysqlConnection());
         $post = $manager->getPostById($this->params['id_post']);
@@ -33,5 +33,18 @@ class PostController extends BaseController
 
         $this->render(
             $post->getTitlePost(), ['post' => $post], 'Frontend/homepage');
+    }
+
+    public function executeDeletePost(): void
+    {
+        $postManager = new PostManager();
+        $post = $postManager->getPostById($this->params['id_post']);
+
+        if(SecurityController::isAuthenticated() && SecurityController::getLoggedUser()->havePostRights($post))
+        {
+            $postManager->deletePost($this->params['id_post']);
+        }
+
+        $this->HTTPResponse->redirect('/');
     }
 }
