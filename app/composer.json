@@ -1,0 +1,19 @@
+{
+    "name": "eacci/tp_mvc",
+    "description": "tp_mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "michelf/php-markdown": "^1.9",
+      "ext-dom": "*"
+    },
+    "authors": [
+        {
+            "name": "Ela",
+            "email": "eaccipe@gmail.com"
+        }
+    ]
+}

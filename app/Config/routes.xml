@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<routes>
+    // Frontend :
+    <route p="/" action="index" controller="PostController"/>
+    <route p="post" action="show" controller="PostController" params="id_post"/>
+    <route p="member" action="member" controller="MemberController"/>
+
+    // Gestion Post et Comment :
+    <route p="post-comment" controller="CommentController" action="postComment"/>
+    <route p="delete-comment" controller="CommentController" action="deleteComment" params="id_comment"/>
+    <route p ="create-post" controller="PostController" action="createPost"/>
+    <route p="update-post" controller="PostController" action="updatePost" params="id_post"/>
+    <route p="delete-post" controller="PostController" action="deletePost" params="id_post"/>
+</routes>
